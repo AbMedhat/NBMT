@@ -1,0 +1,14 @@
+{
+    "routers": [
+        {"name": "vios", "driver": "cisco_ios", "ip": "192.168.6.101", "username": "nbmt", "password": "nbmt123"},
+        {"name": "vxr", "driver": "cisco_iosxr", "ip": "192.168.6.102", "username": "nbmt", "password": "nbmt123"},
+        {"name": "vsrx", "driver": "juniper", "ip": "192.168.6.103", "username": "nbmt", "password": "nbmt123"},
+        {"name": "vMX1", "driver": "juniper", "ip": "192.168.1.201", "username": "nbmt", "password": "nbmt123"},
+        {"name": "CSR2", "driver": "cisco_ios", "ip": "192.168.1.202", "username": "nbmt", "password": "nbmt123"},
+        {"name": "CSR3", "driver": "cisco_ios", "ip": "192.168.1.203", "username": "nbmt", "password": "nbmt123"},
+        {"name": "XRv4", "driver": "cisco_iosxr", "ip": "192.168.1.204", "username": "nbmt", "password": "nbmt123"}
+    ],
+    "switches": [
+        {"name": "viosl2", "ip": "192.168.6.104", "username": "nbmt", "password": "nbmt123"}
+    ]
+}
