@@ -16,25 +16,36 @@ if not os.path.exists('running-config'):
 
 for host in hosts["devices"].keys():
     hostname = host
-    if "username" and "password" in hosts["devices"][host].keys():
-        username = hosts["devices"][host]["username"]
-        password = hosts["devices"][host]["password"]
-    elif "username" and "password" in hosts["creds"]:
-        username = hosts["creds"]["username"]
-        password = hosts["creds"]["password"]
-    else:
-        print(">>> Cannot Find Valid Credentials <<<")
+    if "state" in hosts["devices"][host].keys() and hosts["devices"][host]["state"] == "up":
+        
+        if "username" and "password" in hosts["devices"][host].keys():
+            username = hosts["devices"][host]["username"]
+            password = hosts["devices"][host]["password"]
+        elif "username" and "password" in hosts["creds"]:
+            username = hosts["creds"]["username"]
+            password = hosts["creds"]["password"]
+        else:
+            print(">>> Cannot Find Valid Credentials <<<")
+            print("===============================================================================")
+            continue
+
+        if hosts["devices"][host]["driver"] == 'cisco_ios':
+            device = cisco_ios(hosts["devices"][host]["ip"], username, password)
+        elif hosts["devices"][host]["driver"] == 'cisco_iosxr':
+            device = cisco_iosxr(hosts["devices"][host]["ip"], username, password)
+        elif hosts["devices"][host]["driver"] == 'juniper':
+            device = juniper(hosts["devices"][host]["ip"], username, password)
+        else:
+            print(">>> Unkown Device type <<< \n")
+            print("===============================================================================")
+            continue
+
+    elif "state" in hosts["devices"][host].keys() and hosts["devices"][host]["state"] == "down":
+        print(">>> Skippping Host %s \n") %hostname
         print("===============================================================================")
         continue
-    
-    if hosts["devices"][host]["driver"] == 'cisco_ios':
-        device = cisco_ios(hosts["devices"][host]["ip"], username, password)
-    elif hosts["devices"][host]["driver"] == 'cisco_iosxr':
-        device = cisco_iosxr(hosts["devices"][host]["ip"], username, password)
-    elif hosts["devices"][host]["driver"] == 'juniper':
-        device = juniper(hosts["devices"][host]["ip"], username, password)
     else:
-        print(">>> Unkown Device type <<< \n")
+        print("Undefined State for Host %s \n") %hostname
         print("===============================================================================")
         continue
 
