@@ -1,14 +1,47 @@
 {
-    "routers": [
-        {"name": "vios", "driver": "cisco_ios", "ip": "192.168.6.101", "username": "nbmt", "password": "nbmt123"},
-        {"name": "vxr", "driver": "cisco_iosxr", "ip": "192.168.6.102", "username": "nbmt", "password": "nbmt123"},
-        {"name": "vsrx", "driver": "juniper", "ip": "192.168.6.103", "username": "nbmt", "password": "nbmt123"},
-        {"name": "vMX1", "driver": "juniper", "ip": "192.168.1.201", "username": "nbmt", "password": "nbmt123"},
-        {"name": "CSR2", "driver": "cisco_ios", "ip": "192.168.1.202", "username": "nbmt", "password": "nbmt123"},
-        {"name": "CSR3", "driver": "cisco_ios", "ip": "192.168.1.203", "username": "nbmt", "password": "nbmt123"},
-        {"name": "XRv4", "driver": "cisco_iosxr", "ip": "192.168.1.204", "username": "nbmt", "password": "nbmt123"}
-    ],
-    "switches": [
-        {"name": "viosl2", "ip": "192.168.6.104", "username": "nbmt", "password": "nbmt123"}
-    ]
+    "creds": {
+        "username": "nbmt",
+        "password": "nbmt123"
+    },
+    "devices" : {
+        "vios": {
+            "ip": "192.168.6.101",
+            "driver": "cisco_ios",
+            "state": "down",
+            "username": "cisco",
+            "password": "cisco"
+        },
+        "CSR2": {
+            "ip": "192.168.1.202",
+            "driver": "cisco_ios",
+            "state": "up",
+            "username": "cisco",
+            "password": "cisco"
+        },
+        "CSR3": {
+            "ip": "192.168.1.203",
+            "driver": "cisco_ios",
+            "state": "up"
+        },
+        "vxr": {
+            "ip": "192.168.6.102",
+            "driver": "cisco_iosxr",
+            "state": "down"
+        },
+        "XRv4": {
+            "ip": "192.168.1.204",
+            "driver": "cisco_iosxr",
+            "state": "up"
+        },
+        "vsrx": {
+            "ip": "192.168.6.103:",
+            "driver": "juniper",
+            "state": "down"
+        },
+        "vMX1": {
+            "ip": "192.168.1.201",
+            "driver": "juniper",
+            "state": "up"
+        }
+    }  
 }

@@ -14,18 +14,29 @@ if not os.path.exists('running-config'):
     os.makedirs('running-config')
 
 
-for host in hosts.get("routers"):
-
-    hostname = host["name"]
-
-    if host["driver"] == 'cisco_ios':
-        device = cisco_ios(host["ip"], host["username"], host["password"])
-    elif host["driver"] == 'cisco_iosxr':
-        device = cisco_iosxr(host["ip"], host["username"], host["password"])
-    elif host["driver"] == 'juniper':
-        device = juniper(host["ip"], host["username"], host["password"])
+for host in hosts["devices"].keys():
+    hostname = host
+    if "username" and "password" in hosts["devices"][host].keys():
+        username = hosts["devices"][host]["username"]
+        password = hosts["devices"][host]["password"]
+    elif "username" and "password" in hosts["creds"]:
+        username = hosts["creds"]["username"]
+        password = hosts["creds"]["password"]
     else:
-        raise "Unkown Device type"
+        print(">>> Cannot Find Valid Credentials <<<")
+        print("===============================================================================")
+        continue
+    
+    if hosts["devices"][host]["driver"] == 'cisco_ios':
+        device = cisco_ios(hosts["devices"][host]["ip"], username, password)
+    elif hosts["devices"][host]["driver"] == 'cisco_iosxr':
+        device = cisco_iosxr(hosts["devices"][host]["ip"], username, password)
+    elif hosts["devices"][host]["driver"] == 'juniper':
+        device = juniper(hosts["devices"][host]["ip"], username, password)
+    else:
+        print(">>> Unkown Device type <<< \n")
+        print("===============================================================================")
+        continue
 
     try:
         device.open()
@@ -51,7 +62,7 @@ for host in hosts.get("routers"):
             with open('running-config/'+hostname+'/'+hostname+'-'+time.strftime("%Y-%m-%d--%H-%M")+'.log', 'w') as file:
                 print(">>> Writing to file %s \n") %file.name
                 print("=============================================================================== \n")
-                for each_line in run_conf:
+                for each_line in running_config:
                     file.write(each_line+'\n')
         else:
             print(">>> No Changes Since Last Run")
