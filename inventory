@@ -1,0 +1,35 @@
+[DEFAULT]
+running_config_dir  :  running_config/
+state : up
+username  :  nbmt
+password  :  nbmt123
+
+
+[vios]
+ip : 192.168.6.101
+driver : ios
+state : down
+username : cisco
+password : cisco
+[CSR2]
+ip : 192.168.1.202
+driver : ios
+username : cisco
+password : cisco
+[CSR3]
+ip : 192.168.1.203
+driver : ios
+[vxr]
+ip : 192.168.6.102
+driver : iosxr
+state : dpwn
+[XRv4]
+ip : 192.168.1.204
+driver : iosxr
+[vsrx]
+ip : 192.168.6.103
+driver : junos
+state : down
+[vMX1]
+ip : 192.168.1.201
+driver : junos

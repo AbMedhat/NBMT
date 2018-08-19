@@ -1,5 +1,5 @@
 # directories
 .vscode/*
-running-config/*
+running_config/*
 # file extensions
 **.pyc
