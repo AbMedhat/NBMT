@@ -8,7 +8,6 @@ password  :  nbmt123
 [vios]
 ip : 192.168.6.101
 driver : ios
-state : down
 username : cisco
 password : cisco
 [CSR2]
@@ -16,20 +15,24 @@ ip : 192.168.1.202
 driver : ios
 username : cisco
 password : cisco
+state : down
 [CSR3]
 ip : 192.168.1.203
 driver : ios
-[vxr]
+state : down
+[xrv]
 ip : 192.168.6.102
 driver : iosxr
-state : dpwn
+state : up
 [XRv4]
 ip : 192.168.1.204
 driver : iosxr
+state : dpwn
 [vsrx]
 ip : 192.168.6.103
 driver : junos
-state : down
+state : up
 [vMX1]
 ip : 192.168.1.201
 driver : junos
+state : down
