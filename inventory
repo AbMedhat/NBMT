@@ -1,38 +1,35 @@
+# "inventory" file configuration example
+#
+# Rules of inheritance:
+#   - DEFAULT seciotn parameters are inherited into other sections
+#   - Parameters defined under router section will override DEFAULT section parameters
+#
+# Supported "driver" types:
+#   - ios   : for cisco ios devices
+#   - xr    : for cisco ios-xr devices
+#   - junos : for juniper devices
+#
+#
+# [DEFAULT]
+# running_config_dir  :  running_config/
+# state : up
+# username  :  nbmt
+# password  :  nbmt123
+#
+#
+# [Router-1]            # state is inherited from the DEFAULT section
+# ip : 10.10.10.1
+# driver : ios
+# username : cisco      # overrides username defined under the DEFAULT section
+# password : cisco      # overrides password defined under the DEFAULT section
+#
+# [Router-2]            # username and password are inherited from the default section
+# ip : 10.10.10.2
+# driver : junos
+# state : down
+
 [DEFAULT]
 running_config_dir  :  running_config/
 state : up
-username  :  nbmt
-password  :  nbmt123
-
-
-[vios]
-ip : 192.168.6.101
-driver : ios
-username : cisco
-password : cisco
-[CSR2]
-ip : 192.168.1.202
-driver : ios
-username : cisco
-password : cisco
-state : down
-[CSR3]
-ip : 192.168.1.203
-driver : ios
-state : down
-[xrv]
-ip : 192.168.6.102
-driver : iosxr
-state : up
-[XRv4]
-ip : 192.168.1.204
-driver : iosxr
-state : dpwn
-[vsrx]
-ip : 192.168.6.103
-driver : junos
-state : up
-[vMX1]
-ip : 192.168.1.201
-driver : junos
-state : down
+username : nbmt
+password : nbmt123
