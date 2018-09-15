@@ -1,0 +1,52 @@
+# "inventory" file configuration
+#
+# Rules of inheritance:
+#   - "defaults" seciotn parameters are inherited into other sections using the &/* yaml anchor.
+#   - parameters defined under router section will override "defaults" section parameters.
+#   - inheritance can be removed for a device and all parameters needs to be configured manually.
+#
+# Supported "driver" types:
+#   - ios   : for cisco ios devices
+#   - xr    : for cisco ios-xr devices
+#   - junos : for juniper devices
+#
+# Configuration example:
+#
+# ---
+# defaults: &defaults           # "defaults" section
+#   run_dir:  running_config/   # default running configuration backup directory, where each device has its own subdirectory
+#   state: up                   # state is assumed as "up" by default
+#   username: nbmt
+#   password: nbmt123
+#
+# routers:
+#   router-1:                   # hostname  # state is inherited from the "defaults" section
+#     <<: *defaults             # inheritance from the "defaults" section
+#     ip : 10.10.10.1
+#     driver : ios
+#     username : cisco          # overrides username defined under the "defaults" section
+#     password : cisco          # overrides username defined under the "defaults" section
+#
+#   router-2:                   # hostname  # username and password are inherited from the "defaults" section
+#     <<: *defaults             # inheritance from the "defaults" section
+#     ip : 10.10.10.2
+#     driver : junos
+#     state : down              # manual definition overrides the "defaults" section
+# 
+#   router-3:                   # hostname  # manual definition for all parameters without inheriting from the "defaults" section
+#     ip: 10.10.10.3
+#     driver: xr
+#     state: up
+#     username: cisco
+#     password: cisco123
+#     run_dir:  xr_config/      # changing running configuration backup directory
+
+---
+defaults: &defaults
+  run_dir:  running_config/
+  state: up
+  username: nbmt
+  password: nbmt123
+routers:
+  router-1:
+    <<: *defaults

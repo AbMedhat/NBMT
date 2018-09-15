@@ -1,11 +1,5 @@
 """ Network Backup and Management Tool"""
-import configparser
-from config_backup import ConfigBackup
+from helpers import loadConfig, deviceBackup
 
-# Load the inventory file
-inventory = configparser.ConfigParser()
-inventory.read('inventory')
-
-# Call ConfigBackup
-backup = ConfigBackup(inventory)
-backup.running_config_backup()
+for device in loadConfig('inventory.yml'):
+    deviceBackup(device)

@@ -1,6 +1,7 @@
 # directories
-.vscode/*
+.vscode/
 __pycache__/
-running_config/*
+running_config/
+downloads/
 # file extensions
 **.pyc
